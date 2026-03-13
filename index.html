@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Velata Studio — Creatività a 360°. Grafica, brand identity e comunicazione strategica in Friuli. Design che vola alto.">
+  <title>Velata Studio — Design che vola alto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --ink:#1a1814;
+      --violet:#3d2b6e;
+      --violet-dark:#2a1d50;
+      --violet-deep:#1e1538;
+      --orange:#f05a28;
+      --orange-light:#ff7a45;
+      --cream:#f5f2ec;
+      --muted:#9e96b0;
+      --border:rgba(255,255,255,0.1);
+      --green-bright:#4dcc7a;
+      --fd:'Cormorant Garamond',Georgia,serif;
+      --fb:'DM Sans',sans-serif;
+      --max:900px
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:var(--fb);background:var(--violet-deep);color:var(--cream);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 2rem;background:rgba(30,21,56,0.92);backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:border-color .3s}
+    nav.scrolled{border-color:var(--border)}
+    .nav-logo img{height:38px;display:block}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-links a{font-size:.78rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,242,236,.5);text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:var(--orange)}
+    .nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+    .nav-burger span{display:block;width:24px;height:1.5px;background:var(--cream);transition:all .3s}
+
+    /* HERO */
+    #hero{min-height:100svh;display:grid;grid-template-rows:1fr auto;padding-top:80px;position:relative;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--violet-deep) 0%,var(--violet) 60%,var(--violet-dark) 100%);z-index:0}
+    .hero-overlay{display:none}
+    @keyframes slow-zoom{from{transform:scale(1.05)}to{transform:scale(1.12)}}
+    .hero-content{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:2rem 2rem 0;max-width:var(--max);margin:0 auto;width:100%}
+    .hero-logo{height:60px;margin-bottom:3rem;opacity:0;animation:fade-up .8s .2s forwards;filter:brightness(0) invert(1)}
+    .hero-eyebrow{font-size:.75rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin-bottom:1.2rem;opacity:0;animation:fade-up .8s .4s forwards}
+    .hero-title{font-family:var(--fd);font-size:clamp(4rem,12vw,10rem);font-weight:300;line-height:.9;color:var(--cream);margin-bottom:1.5rem;opacity:0;animation:fade-up .8s .6s forwards}
+    .hero-title em{font-style:italic;color:var(--orange);display:block}
+    .hero-tagline{font-size:clamp(1.1rem,2.2vw,1.35rem);color:rgba(245,242,236,.75);max-width:540px;font-weight:300;margin-bottom:0;opacity:0;animation:fade-up .8s .8s forwards}
+    .hero-tagline strong{color:var(--cream);font-weight:400}
+    .hero-tagline .green{color:#4dcc7a;font-weight:500}
+    .hero-cta{display:inline-block;margin-top:2.5rem;padding:.9rem 2.2rem;background:var(--orange);border:none;color:#fff;font-family:var(--fb);font-size:.8rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:background .3s,transform .2s;opacity:0;animation:fade-up .8s 1s forwards}
+    .hero-cta:hover{background:var(--orange-light);transform:translateY(-2px)}
+    .hero-bottom{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;padding:1.5rem 2rem;max-width:var(--max);margin:0 auto;width:100%;opacity:0;animation:fade-up .8s 1.1s forwards}
+    .hero-scroll,.hero-location{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,242,236,.3)}
+    @keyframes fade-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+    /* SEZIONI */
+    section{padding:8rem 2rem}
+    .container{max-width:var(--max);margin:0 auto}
+    .section-label{font-size:.7rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin-bottom:2rem;display:flex;align-items:center;gap:.8rem}
+    .section-label::after{content:'';display:block;width:40px;height:1px;background:var(--orange)}
+
+    /* ABOUT */
+    #about{background:var(--violet-dark)}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+    .about-headline{font-family:var(--fd);font-size:clamp(2.8rem,5vw,4.5rem);font-weight:300;line-height:1.05;color:var(--cream)}
+    .about-headline em{font-style:italic;color:var(--orange)}
+    .about-body p{font-size:1rem;line-height:1.8;color:rgba(245,242,236,.7);margin-bottom:1.4rem;font-weight:300}
+    .about-body p strong{font-weight:500;color:var(--cream)}
+    .about-body p strong.name{color:var(--green-bright);font-weight:500}
+    .about-divider{width:40px;height:1px;background:var(--border);margin:2rem 0}
+    .about-clients{font-size:.78rem;letter-spacing:.06em;color:var(--muted);line-height:2.1}
+    .about-clients strong{display:block;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:.5rem;font-weight:500}
+
+    /* SERVIZI */
+    #servizi{background:var(--violet-deep)}
+    .servizi-intro{font-family:var(--fd);font-size:clamp(2rem,4vw,3.2rem);font-weight:300;line-height:1.15;color:var(--cream);margin-bottom:4rem;max-width:620px}
+    .servizi-intro em{font-style:italic;color:var(--orange)}
+    .servizi-list{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--border)}
+    .servizio-item{padding:2.5rem 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:start}
+    .servizio-item:nth-child(odd){padding-right:3rem;border-right:1px solid var(--border)}
+    .servizio-item:nth-child(even){padding-left:3rem}
+    .servizio-num{font-family:var(--fd);font-size:.9rem;font-weight:300;color:var(--orange);padding-top:.15rem;font-style:italic}
+    .servizio-title{font-family:var(--fd);font-size:1.4rem;font-weight:400;color:var(--cream);margin-bottom:.5rem}
+    .servizio-desc{font-size:.88rem;color:rgba(245,242,236,.45);line-height:1.7;font-weight:300}
+
+    /* PORTFOLIO */
+    #portfolio{background:var(--violet-dark)}
+    .portfolio-intro{font-family:var(--fd);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;line-height:1.2;color:var(--cream);margin-bottom:4rem;max-width:580px}
+    .portfolio-intro em{font-style:italic;color:var(--orange)}
+    .portfolio-list{display:flex;flex-direction:column}
+    .portfolio-item{display:grid;grid-template-columns:120px 1fr auto;gap:2.5rem;align-items:center;padding:2.5rem 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;cursor:pointer;transition:background .2s}
+    .portfolio-item:first-child{border-top:1px solid var(--border)}
+    .portfolio-item:hover .portfolio-title{color:var(--orange)}
+    .portfolio-item:hover .portfolio-arrow{transform:translateX(6px);color:var(--orange)}
+    .portfolio-year{font-family:var(--fd);font-size:.85rem;font-style:italic;color:var(--muted)}
+    .portfolio-title{font-family:var(--fd);font-size:clamp(1.4rem,2.5vw,2rem);font-weight:400;color:var(--cream);transition:color .2s;margin-bottom:.3rem}
+    .portfolio-tags{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+    .portfolio-arrow{font-size:1.2rem;color:rgba(245,242,236,.3);transition:transform .3s,color .2s}
+
+    /* MODAL */
+    .modal-overlay{position:fixed;inset:0;background:rgba(14,10,30,.97);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s;padding:2rem}
+    .modal-overlay.open{opacity:1;pointer-events:all}
+    .modal-box{background:var(--violet-dark);max-width:800px;width:100%;max-height:90vh;overflow-y:auto;transform:translateY(30px);transition:transform .4s;border:1px solid var(--border)}
+    .modal-overlay.open .modal-box{transform:translateY(0)}
+    .modal-close{position:sticky;top:0;background:var(--violet-dark);display:flex;justify-content:flex-end;padding:1.2rem 1.5rem 0;z-index:2}
+    .modal-close button{background:none;border:none;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);cursor:pointer;font-family:var(--fb);font-weight:500}
+    .modal-close button:hover{color:var(--orange)}
+    .modal-body{padding:1rem 3rem 3rem}
+    .modal-category{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:1rem}
+    .modal-title{font-family:var(--fd);font-size:clamp(2rem,5vw,3.5rem);font-weight:300;line-height:1.05;margin-bottom:1.5rem;color:var(--cream)}
+    .modal-desc{font-size:1rem;line-height:1.8;color:rgba(245,242,236,.65);font-weight:300;margin-bottom:2rem;max-width:580px}
+    .modal-case{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;margin-bottom:2.5rem}
+    .modal-case-item{border-left:2px solid rgba(240,90,40,.4);padding-left:1rem}
+    .modal-case-label{font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:.4rem;font-weight:500}
+    .modal-case-text{font-size:.86rem;line-height:1.6;color:rgba(245,242,236,.7);font-weight:300}
+    .modal-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem}
+    .modal-gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;cursor:zoom-in;transition:opacity .2s}
+    .modal-gallery img:hover{opacity:.8}
+
+    /* LIGHTBOX */
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.98);z-index:300;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+    .lightbox.open{opacity:1;pointer-events:all}
+    .lightbox img{max-width:92vw;max-height:92vh;object-fit:contain}
+    .lightbox-close{position:fixed;top:1.5rem;right:2rem;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);cursor:pointer;background:none;border:none;font-family:var(--fb)}
+
+    /* CONTATTI */
+    #contatti{background:var(--violet-deep)}
+    .contatti-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+    .contatti-headline{font-family:var(--fd);font-size:clamp(2.5rem,5vw,4rem);font-weight:300;line-height:1.05;color:var(--cream);margin-bottom:1.5rem}
+    .contatti-headline em{font-style:italic;color:var(--orange)}
+    .contatti-desc{font-size:.95rem;line-height:1.8;color:rgba(245,242,236,.5);font-weight:300;margin-bottom:2.5rem}
+    .contact-info{display:flex;flex-direction:column;gap:.5rem}
+    .contact-row{display:flex;gap:1rem;align-items:baseline;font-size:.88rem}
+    .contact-label{font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);font-weight:500;min-width:55px}
+    .contact-value{color:rgba(245,242,236,.65);text-decoration:none;transition:color .2s}
+    .contact-value:hover{color:var(--cream)}
+    .contact-form{display:flex;flex-direction:column;gap:1.4rem}
+    .form-field{display:flex;flex-direction:column;gap:.4rem}
+    .form-field label{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,242,236,.35);font-weight:500}
+    .form-field input,.form-field textarea,.form-field select{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--cream);font-family:var(--fb);font-size:.95rem;font-weight:300;padding:.85rem 1rem;transition:border-color .2s;outline:none;-webkit-appearance:none;border-radius:0}
+    .form-field input:focus,.form-field textarea:focus,.form-field select:focus{border-color:var(--orange)}
+    .form-field textarea{resize:vertical;min-height:110px}
+    .form-field select option{background:var(--violet-dark)}
+    .form-submit{padding:1rem 2.5rem;background:var(--orange);border:none;color:#fff;font-family:var(--fb);font-size:.8rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .2s;align-self:flex-start;border-radius:0}
+    .form-submit:hover{background:var(--orange-light);transform:translateY(-2px)}
+
+    /* FOOTER */
+    footer{background:var(--violet-deep);border-top:1px solid var(--border);padding:2rem}
+    .footer-inner{max-width:var(--max);margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+    .footer-logo img{height:28px;filter:brightness(0) invert(1);opacity:.35}
+    .footer-copy,.footer-seo{font-size:.7rem;color:rgba(245,242,236,.2);letter-spacing:.05em}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}.reveal-delay-3{transition-delay:.3s}
+
+    /* RESPONSIVE */
+    @media(max-width:768px){
+      .nav-links{display:none}.nav-burger{display:flex}
+      .nav-links.open{display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--violet-deep);align-items:center;justify-content:center;gap:2.5rem;z-index:99}
+      .nav-links.open a{font-size:1.1rem;color:var(--cream)}
+      .about-grid,.contatti-grid{grid-template-columns:1fr;gap:3rem}
+      .servizi-list{grid-template-columns:1fr}
+      .servizio-item:nth-child(odd){padding-right:0;border-right:none}
+      .servizio-item:nth-child(even){padding-left:0}
+      .portfolio-item{grid-template-columns:70px 1fr auto;gap:1rem}
+      .modal-body{padding:1rem 1.5rem 2.5rem}
+      .modal-case{grid-template-columns:1fr}
+      section{padding:5rem 1.5rem}
+    }
+    @media(max-width:480px){
+      nav{padding:1rem 1.2rem}
+      .hero-content{padding:1.5rem 1.2rem 0}
+      .hero-bottom{padding:1.2rem 1.2rem}
+      .hero-logo{height:44px}
+      section{padding:4rem 1.2rem}
+      .footer-inner{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a class="nav-logo" href="#hero"><img src="logo-white.png" alt="Velata Studio" style="height:36px;display:block;filter:brightness(1)"></a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#about">Studio</a></li>
+    <li><a href="#servizi">Servizi</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#contatti">Contatti</a></li>
+  </ul>
+  <button class="nav-burger" id="nav-burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Creatività a 360° — Friuli</p>
+    <h1 class="hero-title">Design<br><em>che vola alto.</em></h1>
+    <p class="hero-tagline">Trasformo le idee in <span class="green">comunicazione</span> che lascia il segno.</p>
+    <a href="#contatti" class="hero-cta">Parliamo del tuo progetto</a>
+  </div>
+  <div class="hero-bottom">
+    <span class="hero-scroll">Scorri per scoprire</span>
+    <span class="hero-location">Friuli Collinare — Italia</span>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="section-label reveal">Studio</div>
+    <div class="about-grid">
+      <div class="reveal reveal-delay-1">
+        <h2 class="about-headline">Vent'anni<br>di forma<br><em>e sostanza.</em></h2>
+      </div>
+      <div class="about-body reveal reveal-delay-2">
+        <p>Sono <strong class="name">Veronica</strong>, mi occupo di grafica e comunicazione strategica, con sede nel Friuli Collinare. Ho iniziato a creare nel 2004 e da allora non ho mai smesso.</p>
+        <p>In tutti questi anni ho lavorato per realtà molto diverse — agenzie di comunicazione, aziende, enti pubblici, realtà sportive e culturali — portando sempre lo stesso approccio: ascolto profondo, precisione tecnica e creatività che produce risultati concreti.</p>
+        <p>Ho fondato <strong>Velata Studio</strong> come spazio dove la creatività non si nasconde, ma si rivela. Il nome <em>velata</em> non è un caso: richiama la leggerezza, la trasparenza, il velo che separa un'idea dalla sua forma visiva. Il momento in cui qualcosa di ancora invisibile prende corpo, colore, voce. È esattamente quello che faccio ogni giorno.</p>
+        <div class="about-divider"></div>
+        <div class="about-clients">
+          <strong>Con chi ho lavorato</strong>
+          Diverse Agenzie di comunicazione integrata — Udinese Calcio<br>
+          GaBe (Gianfranco Angelico Benvenuto) — Pro Loco Friuli Collinare<br>
+          ENFAP Gorizia — Crios — Minini Paper Flower<br>
+          Blasutta Srl — GSE Editoria per i Comuni di Veneto e Friuli
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="servizi">
+  <div class="container">
+    <div class="section-label reveal">Cosa faccio</div>
+    <p class="servizi-intro reveal reveal-delay-1">Non esistono soluzioni <em>preconfezionate.</em><br>Ogni progetto inizia da un ascolto.</p>
+    <div class="servizi-list">
+      <div class="servizio-item reveal"><span class="servizio-num">01</span><div><div class="servizio-title">Brand Identity</div><p class="servizio-desc">Loghi, palette, tipografia e manuale d'uso. Un'identità visiva coerente che racconta chi sei prima ancora che tu parli.</p></div></div>
+      <div class="servizio-item reveal reveal-delay-1"><span class="servizio-num">02</span><div><div class="servizio-title">Comunicazione Stampa</div><p class="servizio-desc">Brochure, flyer, manifesti, packaging e campagne ADV. Dal concept alla pre-stampa, con attenzione ai dettagli tecnici.</p></div></div>
+      <div class="servizio-item reveal reveal-delay-2"><span class="servizio-num">03</span><div><div class="servizio-title">Grande Formato</div><p class="servizio-desc">Backdrop, roll-up, pannelli espositivi, flotte aziendali brandizzate. Comunicazione che si vede e si ricorda.</p></div></div>
+      <div class="servizio-item reveal reveal-delay-3"><span class="servizio-num">04</span><div><div class="servizio-title">Editoria</div><p class="servizio-desc">Magazine, cataloghi, pubblicazioni istituzionali e culturali. Impaginazione e cura editoriale per contenuti che durano.</p></div></div>
+      <div class="servizio-item reveal"><span class="servizio-num">05</span><div><div class="servizio-title">Web Design</div><p class="servizio-desc">Siti web professionali, veloci e ottimizzati per mobile. Progettati per convertire visitatori in clienti reali.</p></div></div>
+      <div class="servizio-item reveal reveal-delay-1"><span class="servizio-num">06</span><div><div class="servizio-title">Social Media</div><p class="servizio-desc">Gestione visiva di Instagram e Facebook. Post, stories e campagne che costruiscono community e generano riconoscibilità.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio">
+  <div class="container">
+    <div class="section-label reveal">Lavori selezionati</div>
+    <p class="portfolio-intro reveal reveal-delay-1">Ogni progetto è una <em>storia</em><br>raccontata con forma.</p>
+    <div class="portfolio-list">
+      <div class="portfolio-item reveal" onclick="openModal('crios')">
+        <span class="portfolio-year">2013–2018</span>
+        <div><div class="portfolio-title">Crios Ecological Solution</div><div class="portfolio-tags">Brand · Flotta · Comunicazione d'impresa</div></div>
+        <span class="portfolio-arrow">→</span>
+      </div>
+      <div class="portfolio-item reveal reveal-delay-1" onclick="openModal('despar')">
+        <span class="portfolio-year">2013–2018</span>
+        <div><div class="portfolio-title">Despar — Campagna Evento</div><div class="portfolio-tags">Evento · ADV · Comunicazione integrata</div></div>
+        <span class="portfolio-arrow">→</span>
+      </div>
+      <div class="portfolio-item reveal reveal-delay-2" onclick="openModal('display')">
+        <span class="portfolio-year">2005–2006</span>
+        <div><div class="portfolio-title">Display Retail — Grandi Brand</div><div class="portfolio-tags">Display espositivi · Retail · Pre-stampa</div></div>
+        <span class="portfolio-arrow">→</span>
+      </div>
+      <div class="portfolio-item reveal reveal-delay-3" onclick="openModal('editoria')">
+        <span class="portfolio-year">2014–2019</span>
+        <div><div class="portfolio-title">Editoria Istituzionale</div><div class="portfolio-tags">Magazine · Mostra · Enti pubblici</div></div>
+        <span class="portfolio-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contatti">
+  <div class="container">
+    <div class="section-label reveal" >Iniziamo</div>
+    <div class="contatti-grid">
+      <div class="reveal reveal-delay-1">
+        <h2 class="contatti-headline">Hai un<br><em>progetto</em><br>in mente?</h2>
+        <p class="contatti-desc">Raccontamelo. Che si tratti di un logo, di un sito o di una campagna completa, ogni conversazione inizia dalla stessa domanda: cosa vuoi comunicare?</p>
+        <div class="contact-info">
+          <div class="contact-row"><span class="contact-label">Tel</span><a class="contact-value" href="tel:+393203867010">+39 320 386 7010</a></div>
+          <div class="contact-row"><span class="contact-label">Mail</span><a class="contact-value" href="mailto:info@velatastudio.com">info@velatastudio.com</a></div>
+          <div class="contact-row"><span class="contact-label">Dove</span><span class="contact-value">Friuli Collinare · Udine</span></div>
+        </div>
+      </div>
+      <form class="contact-form reveal reveal-delay-2" onsubmit="submitForm(event)">
+        <div class="form-field"><label>Nome e cognome</label><input type="text" required placeholder="Il tuo nome"></div>
+        <div class="form-field"><label>Email</label><input type="email" required placeholder="tua@email.it"></div>
+        <div class="form-field">
+          <label>Di cosa hai bisogno?</label>
+          <select><option value="">Seleziona un servizio</option><option>Brand Identity</option><option>Comunicazione Stampa</option><option>Grande Formato</option><option>Editoria</option><option>Web Design</option><option>Social Media</option><option>Più servizi / Non so ancora</option></select>
+        </div>
+        <div class="form-field"><label>Raccontami il progetto</label><textarea placeholder="Descrivi brevemente il tuo progetto, gli obiettivi e le tempistiche."></textarea></div>
+        <button type="submit" class="form-submit">Invia messaggio</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo"><img src="logo.png" alt="Velata Studio"></div>
+    <span class="footer-seo">Studio di comunicazione visiva a Udine e nel Friuli Collinare</span>
+    <span class="footer-copy">© 2025 Velata Studio · P.IVA da inserire</span>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal-box" id="modal-box">
+    <div class="modal-close"><button onclick="closeModalBtn()">✕ Chiudi</button></div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕ Chiudi</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+const nav=document.getElementById('main-nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60));
+const burger=document.getElementById('nav-burger'),navLinks=document.getElementById('nav-links');
+burger.addEventListener('click',()=>navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+const PD={
+  crios:{category:'Brand · Grande Formato · Flotta Aziendale',title:'Crios Ecological Solution',
+    desc:'Crios è un\'azienda specializzata in soluzioni ecologiche per l\'industria. Ho curato l\'intera comunicazione aziendale per oltre cinque anni: dalla flotta di furgoni brandizzati alle campagne ADV, fino ai materiali istituzionali.',
+    challenge:'Costruire un\'identità forte per un\'azienda B2B tecnica, rendendola accessibile e distintiva sul territorio.',
+    solution:'Brand guidelines, applicazioni su veicoli e mezzi, materiali stampa e campagne pubblicitarie con linguaggio coerente.',
+    result:'Una flotta riconoscibile su tutto il territorio regionale e una comunicazione che rafforza la credibilità istituzionale.',
+    images:['crios1.jpg','crios2.jpg','crios3.jpg','crios4.jpg','crios5.jpg','adv.jpg']},
+  despar:{category:'Evento · Campagna ADV · Comunicazione integrata',title:'Despar — Una Giornata Con',
+    desc:'Progettazione di tutti i materiali grafici per l\'evento "Una Giornata Con" di Despar. Coerenza visiva su formati e supporti diversi, dalla cartellonistica in-store ai materiali promozionali.',
+    challenge:'Coordinare la comunicazione di un evento retail su numerosi formati, rispettando il brand e creando atmosfera riconoscibile.',
+    solution:'Sistema visivo modulare applicato su manifesti, pannelli espositivi e materiali promozionali in-store.',
+    result:'Comunicazione d\'evento uniforme e professionale, con forte riconoscibilità in tutti i punti vendita coinvolti.',
+    images:['graf34.jpg','graf35.jpg','graf36.jpg','graf37.jpg','graf38.jpg']},
+  display:{category:'Display Espositivi · Retail · Pre-stampa',title:'Display Retail — Grandi Brand',
+    desc:'Durante la collaborazione con Visual Display ho lavorato alla progettazione e pre-stampa di display per lanci prodotto di brand come YSL, Diadora, Illy, Invicta e Genesis.',
+    challenge:'Tradurre le linee guida di brand internazionali in materiali espositivi fisici, gestendo file tecnici complessi.',
+    solution:'Digitalizzazione precisa dei progetti, verifica tecnica dei file e coordinamento con i fornitori di stampa.',
+    result:'Display realizzati nei punti vendita di brand internazionali, con zero errori di stampa e consegne rispettate.',
+    images:['foto12.jpg','foto13.jpg','foto17.jpg','foto18.jpg','foto22.jpg','foto27.jpg','foto30.jpg']},
+  editoria:{category:'Editoria · Magazine · Enti Pubblici',title:'Editoria Istituzionale',
+    desc:'Un percorso lungo anni nell\'editoria istituzionale e culturale friulana. Magazine Qui Udine, materiali per la mostra sul terremoto del Friuli 1976, pubblicazioni per enti pubblici.',
+    challenge:'Raccontare storie complesse con rispetto, precisione e un linguaggio visivo capace di emozionare.',
+    solution:'Impaginazione attenta, tipografia istituzionale, selezione e trattamento delle immagini storiche.',
+    result:'Pubblicazioni distribuite sul territorio regionale, utilizzate da enti culturali come strumenti di memoria.',
+    images:['mostra1.jpg','mostra2.jpg','mostra3.jpg','mostra4.jpg','udine-01.jpg','udine-04.jpg','perc1.jpg','perc2.jpg']}
+};
+
+function openModal(k){
+  const d=PD[k];if(!d)return;
+  document.getElementById('modal-body').innerHTML=`
+    <p class="modal-category">${d.category}</p>
+    <h2 class="modal-title">${d.title}</h2>
+    <p class="modal-desc">${d.desc}</p>
+    <div class="modal-case">
+      <div class="modal-case-item"><div class="modal-case-label">Sfida</div><p class="modal-case-text">${d.challenge}</p></div>
+      <div class="modal-case-item"><div class="modal-case-label">Approccio</div><p class="modal-case-text">${d.solution}</p></div>
+      <div class="modal-case-item"><div class="modal-case-label">Risultato</div><p class="modal-case-text">${d.result}</p></div>
+    </div>
+    <div class="modal-gallery">${d.images.map(s=>`<img src="${s}" loading="lazy" onclick="openLightbox('${s}')" alt="">`).join('')}</div>`;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(e){if(e.target===document.getElementById('modal-overlay'))closeModalBtn()}
+function closeModalBtn(){document.getElementById('modal-overlay').classList.remove('open');document.body.style.overflow=''}
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open')}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModalBtn();closeLightbox()}});
+function submitForm(e){
+  e.preventDefault();const btn=e.target.querySelector('.form-submit');
+  btn.textContent='Messaggio inviato ✓';btn.style.background='#2d6a4f';
+  e.target.reset();
+  setTimeout(()=>{btn.textContent='Invia messaggio';btn.style.background=''},4000);
+}
+</script>
+</body>
+</html>
